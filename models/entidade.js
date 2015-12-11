@@ -5,7 +5,7 @@ var mongoose = restful.mongoose;
 
 // Schema
 var entidadeSchema = new mongoose.Schema({
-        nomeFantasia: { type: String },
+        nomeFantasia: String,
         cidade: String,
         cnpj: Number
 });
