@@ -3,23 +3,25 @@
 var express = require('express');
 var router = express.Router();
 
-// Models
-var Entidade = require('../models/entidade');
-var preCadastro = require('../models/pre_cadastro')
+
 
 //Middleware
-// a middleware sub-stack shows request info for any type of HTTP request to the /user/:id path
-router.use('/entidades', function(req, res, next) {
-            console.log('Request URL:', req.originalUrl);
-            next();
-}, function (req, res, next) {
-            console.log('Request Type:', req.method);
+var middEntidade = require('../middlewares/middEntidades');
+
+// deve imprimir no console todas requisiçoes no caminho '/entidades'
+router.use('/entidades',
+    function(req, res, next) {
+            middEntidade.logReq(router);
+            console.log('teste');
             next();
 });
 
 // Routes
-Entidade.methods(['get', 'post', 'put', 'delete']);
-Entidade.register(router, '/entidades');
+router.get('/entidades', function (req, res, next) {
+        entidade
+
+
+});
 
 preCadastro.methods(['get', 'post', 'put', 'delete']);
 preCadastro.register(router, '/pre_cadastro');
