@@ -1,21 +1,32 @@
+// Configuration files
+var app = require('./config/app_config');
+var db = require('./config/db_config');
 
-// Dependencies
-var express = require('express');
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
+// Controllers
+var produtoController = require('./controllers/produtoController');
 
-// Mongo
-mongoose.connect('mongodb://localhost/ap1_db');
+// Instances of routes
+var produtos = require('./routes/produtoRouter');
 
-// Express
-var app = express();
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
+app.get('/', function(req, res){
+	var ok = [{Bemvindo: 'API de Entidades Sociais'},{
+		hello: 'world',
+		bomdia: {
+			joao: 'maria',
+			pedro: 'Jose'
+		},
+		endereco: {
+			numero: '111',
+			logradouro: 'Rua Brasil',
+			bairro: 'jardim camburi',
+			cidade: 'Vitoria',
+			pais: 'Brasil'
+		},
+		marca: 'SouSol'
+	}];
+	res.json(ok);
+	//res.end('bem vindo!');
+});
 
-// Routes
-app.use('/api', require('./routes/api'));
-
-
-// Start server
-app.listen(3000);
-console.log('api1 rodando na porta 3000');
+// Rotas de produtos
+app.use('/produtos', produtos);
