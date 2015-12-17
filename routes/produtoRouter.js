@@ -9,5 +9,22 @@ router.get('/', function(req, res){
 });
 
 
+router.post('/', function(req, res){
+	var nome = req.body.nome;
+	var descricao = req.body.descricao;
+	var valor = req.body.valor;
+
+	produtoController.save(nome, descricao, valor, function(resp){
+		res.json(resp);
+	});
+});
+
+router.delete('/:id', function(req, res){
+	var id = req.params.id;
+
+	produtoController.delete(id, function(resp){
+		res.json(resp);
+	});
+});
 
 module.exports = router;
