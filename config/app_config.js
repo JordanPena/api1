@@ -20,4 +20,4 @@ app.use(function(req, res, next){
 
 // Run app
 app.listen(port);
-console.log('Rodando o app legal');
+console.log('Rodando o app legal. Acesse http://localhost:3000');

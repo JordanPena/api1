@@ -1,10 +1,9 @@
-var Produto = require('../models/produto');
+var PreCadastro = require('../models/preCadastro');
 
-exports.save = function(nome, descricao, valor, callback){
-	new Produto({
+exports.save = function(nome, email, callback){
+	new PreCadastro({
 		'nome': nome,
-		'descricao': descricao,
-		'valor': valor
+		'email': email
 	}).save(function(error){
 		if(error){
 			callback({error: 'Não foi possível salvar'});
@@ -14,23 +13,20 @@ exports.save = function(nome, descricao, valor, callback){
 	});
 }
 
-/*exports.list = function(id, callback){
-	Produto.find({nome: nome}, e se tiver mais)
-}*/
 
 exports.list = function(callback){
-	Produto.find({}, function(error, produtos){
+	PreCadastro.find({}, function(error, cadastros){
 		if(error){
-			callback({error: 'Não possível encontrar produtos'});
+			callback({error: 'Não possível encontrar cadastros'});
 		}else{
-			callback(produtos);
+			callback(cadastros);
 		}
 	});
 }
 
 
 exports.delete = function(id, callback){
-	Produto.findById(id, function(error, produto){
+	PreCadastro.findById(id, function(error){
 		if (error){
 			callback({error: 'Não foi possível excluir'});
 		}else{

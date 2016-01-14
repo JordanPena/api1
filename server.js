@@ -2,11 +2,9 @@
 var app = require('./config/app_config');
 var db = require('./config/db_config');
 
-// Controllers
-var produtoController = require('./controllers/produtoController');
-
 // Instances of routes
 var produtos = require('./routes/produtoRouter');
+var preCadastro = require('./routes/preCadastroRouter');
 
 app.get('/', function(req, res){
 	var ok = [{Bemvindo: 'API de Entidades Sociais'},{
@@ -28,5 +26,6 @@ app.get('/', function(req, res){
 	//res.end('bem vindo!');
 });
 
-// Rotas de produtos
+// Rotas
 app.use('/produtos', produtos);
+app.use('/precadastro', preCadastro);
