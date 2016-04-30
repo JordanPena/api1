@@ -1,11 +1,7 @@
 var mongoose = require('mongoose');
 
-var urlString = 'mongodb://localhost/bd_api2';
-
-mongoose.connect(urlString, function(err, res){
-	if(err){
-		console.log('Nao concectou a: ' + urlString);
-	}else{
-		console.log('Concectado a: ' + urlString);
-	}
-})
+mongoose.connect(process.env.MONGOLAB_URI, function(err, res){
+	if(err) console.error(err);
+	else
+		console.log('MongoDB concectado em: https://mlab.com');
+});
